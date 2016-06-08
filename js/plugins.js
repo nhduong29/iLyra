@@ -163,23 +163,34 @@ $(function() {
     }();
 
     var uiElements = function(){
+        var customerCol = [
+            { "width": "350px" },
+            { "width": "150px" },
+            { "width": "200px" },
+            { "width": "150px" },
+            { "width": "150px" },
+            { "width": "200px" },
+            { "width": "200px" },
+            { "width": "200px" },
+            { "width": "200px" }
+        ];
 
         //Datatables
         var uiDatatable = function(){
-            if($(".datatable").length > 0){                
-                $(".datatable").dataTable();
+            if($(".datatable").length > 0){
+                $(".datatable").dataTable({ "autoWidth": false,  "columns": customerCol});
                 $(".datatable").on('page.dt',function () {
                     onresize(100);
                 });
             }
-            
-            if($(".datatable_simple").length > 0){                
-                $(".datatable_simple").dataTable({"ordering": false, "info": false, "lengthChange": false,"searching": false});
+
+            if($(".datatable_simple").length > 0){
+                $(".datatable_simple").dataTable({"ordering": false, "info": false, "lengthChange": false,"searching": false, "autoWidth": false});
                 $(".datatable_simple").on('page.dt',function () {
                     onresize(100);
-                });                
-            }            
-        }//END Datatable        
+                });
+            }
+        }//END Datatable
         
         //RangeSlider // This function can be removed or cleared.
         var uiRangeSlider = function(){

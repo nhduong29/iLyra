@@ -1,0 +1,1 @@
+angular.module('iLyra',['ui.bootstrap','datatables']);
