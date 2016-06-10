@@ -298,7 +298,6 @@
                                     <div class="panel panel-default tabs">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Personal Data</a></li>
-                                            <li><a href="#tab-second" role="tab" data-toggle="tab">Payment Settings</a></li>
                                             <li><a href="#tab-third" role="tab" data-toggle="tab">Data Setings</a></li>
                                         </ul>
                                         <div class="panel-body tab-content">
@@ -312,7 +311,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 col-xs-12 control-label">Username</label>
                                                             <div class="col-md-9 col-xs-12">
-                                                                <input type="text" class=" form-control" id="username" ng-model="newCustomer.account.username"/>
+                                                                <input  type="text" class=" form-control" id="username" ng-model="newCustomer.account.username"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -324,10 +323,23 @@
                                                         <div class="form-group">
                                                             <label class="col-md-3 col-xs-12 control-label">Role</label>
                                                             <div class="col-md-9 col-xs-12">
-                                                                <select class="form-control select" ng-model="newCustomer.account.role">
-                                                                    <option selected="selected">USER</option>
+                                                                <select class="form-control " ng-model="newCustomer.account.role">
+                                                                    <option>USER</option>
                                                                     <option >TECHNICAL</option>
                                                                     <option>ADMINISTRATOR</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 col-xs-12 control-label">Payment type</label>
+                                                            <div class="col-md-9 col-xs-12">
+                                                                <select class="form-control "
+                                                                        ng-options="option.name for option in pamentPlantType track by option.planID"
+                                                                        ng-model="newCustomer.paymentPlan">
+                                                                    <!--<option>Standard</option>
+                                                                    <option selected="selected">Economic</option>
+                                                                    <option>Premium</option>
+                                                                    <option>VIP</option>-->
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -337,7 +349,14 @@
                                                                 <input type="text" class="form-control" id="name "ng-model="newCustomer.name"/>
                                                             </div>
                                                         </div>
-
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 col-xs-12 control-label">Email</label>
+                                                            <div class="col-md-9 col-xs-12">
+                                                                <input type="email" class="form-control" id="email" ng-model="newCustomer.email"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="col-md-3 col-xs-12 control-label">Avatar</label>
                                                             <div class="col-md-9 col-xs-12">
@@ -349,7 +368,7 @@
                                                             <label class="col-md-3 col-xs-12 control-label">Date of birth</label>
                                                             <div class="col-md-9 col-xs-12">
                                                                 <div class="input-group">
-                                                                    <input type="text" id="birthday" class="form-control" value="" data-date-format="dd-mm-yyyy" data-date-viewmode="years" ng-model="newCustomer.birthday">
+                                                                    <input type="text" id="birthday" class="form-control"data-date="06-06-2014" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
                                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                                                 </div>
                                                             </div>
@@ -361,19 +380,10 @@
                                                                 <label class="check"><input type="radio" id="female" name="sex" value="female" ng-model="newCustomer.sex"/> Female</label>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="col-md-3 col-xs-12 control-label">Address</label>
                                                             <div class="col-md-9 col-xs-12">
                                                                 <input type="text" class="form-control" id="address" ng-model="newCustomer.address"/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 col-xs-12 control-label">Email</label>
-                                                            <div class="col-md-9 col-xs-12">
-                                                                <input type="email" class="form-control" id="email" ng-model="newCustomer.email"/>
                                                             </div>
                                                         </div>
 
@@ -383,44 +393,9 @@
                                                                 <input type="tel" class="form-control" id="phone" ng-model="newCustomer.phone"/>
                                                             </div>
                                                         </div>
-
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 col-xs-12 control-label">About</label>
-                                                            <div class="col-md-9 col-xs-12">
-                                                                <textarea class="form-control" rows="5" id="about"></textarea>
-                                                                <span class="help-block">Somethink about your life</span>
-                                                            </div>
-                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
                                                         <pre>{{newCustomer | json}}</pre>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="tab-pane" id="tab-second">
-                                                <p>Donec tristique eu sem et aliquam. Proin sodales elementum urna et euismod. Quisque nisl nisl, venenatis eget dignissim et, adipiscing eu tellus. Sed nulla massa, luctus id orci sed, elementum consequat est. Proin dictum odio quis diam gravida facilisis. Sed pharetra dolor a tempor tristique. Sed semper sed urna ac dignissim. Aenean fermentum leo at posuere mattis. Etiam vitae quam in magna viverra dictum. Curabitur feugiat ligula in dui luctus, sed aliquet neque posuere.</p>
-
-                                                <div class="form-group">
-                                                    <label class="col-md-2 col-xs-12 control-label">Payment type</label>
-                                                    <div class="col-md-2">
-                                                        <select class="form-control select">
-                                                            <option>Standard</option>
-                                                            <option selected="selected">Economic</option>
-                                                            <option>Premium</option>
-                                                            <option>VIP</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10">Fusce enim dui, pulvinar a augue nec, dapibus hendrerit mauris. Praesent efficitur, elit non convallis faucibus.</div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-md-2 col-xs-12 control-label"></label>
-                                                    <div class="col-md-6 col-xs-12">
-                                                        <label class="check"><input type="checkbox" class="icheckbox" checked="checked"/> I agree</label>
-                                                        <span class="help-block">Read <a href="#">terms</a> and confirm that you agree</span>
                                                     </div>
                                                 </div>
 
@@ -432,7 +407,7 @@
                                             </div>
                                         </div>
                                         <div class="panel-footer">
-                                            <button class="btn btn-default">Clear Form</button>
+                                            <button class="btn btn-default" ng-click="clearForm()">Clear Form</button>
                                             <button class="btn btn-primary pull-right"  ng-click="addCustomer(newCustomer)">Save Changes <span class="fa fa-floppy-o fa-right"></span></button>
                                         </div>
                                     </div>
@@ -509,7 +484,7 @@
         
         <script type="text/javascript" src="js/plugins.js"></script>        
         <script type="text/javascript" src="js/actions.js"></script>
-
+        <script type="text/javascript" src="js/script.js"></script>
 
         <!--ANGULARJS-->
         <script type="text/javascript" src="js/angular.js"></script>
